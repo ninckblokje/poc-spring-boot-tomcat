@@ -1,0 +1,17 @@
+GET http://localhost:8080/poc-spring-boot-tomcat/api/hello
+Authorization: Basic boot Dummy_123
+
+###
+
+GET http://localhost:8080/poc-spring-boot-tomcat/api/hello/log
+Authorization: Basic boot Dummy_123
+
+###
+
+GET http://localhost:8080/poc-spring-boot-tomcat/api/hello/log/count
+Authorization: Basic boot Dummy_123
+
+###
+
+GET http://localhost:8080/poc-spring-boot-tomcat/api/hello
+Authorization: Basic admin Dummy_123
