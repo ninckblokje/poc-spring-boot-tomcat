@@ -2,6 +2,7 @@ package ninckblokje.poc.boot.tomcat.controller;
 
 import ninckblokje.poc.boot.tomcat.entity.HelloLog;
 import ninckblokje.poc.boot.tomcat.repository.HelloLogRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,9 @@ public class HelloWorldController {
 
     private final HelloLogRepository repository;
 
+    @Value("${app.hello.message:Hello %s!}")
+    private String helloMsg;
+
     public HelloWorldController(HelloLogRepository repository) {
         this.repository = repository;
     }
@@ -23,7 +27,7 @@ public class HelloWorldController {
     @GetMapping
     public String helloWorld(Principal principal) {
         repository.save(HelloLog.builder().dateTime(LocalDateTime.now()).user(principal.getName()).build());
-        return String.format("Hello %s!", principal.getName());
+        return String.format(helloMsg, principal.getName());
     }
 
     @GetMapping("/log")
